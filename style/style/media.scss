@@ -1,0 +1,121 @@
+// Measures
+$media-audio-width: 100%;
+
+$media-video-width: 100%;
+$media-video-maxwidth: 400px;
+
+$media-controls-height: 64px;
+$media-controls-border-radius: 4px;
+$media-controls-horizontal-padding: 24px;
+
+// text
+$font-family: 'Roboto', 'Helvetica', sans-serif;
+$font-size: 12px;
+$media-controls-time-color: #fff;
+$media-controls-time-remaining-color: #FF9800;
+
+// Color
+$media-controls-background: #2d2d2d;
+$media-controls-line-color: #8BC34A;
+$media-controls-volume-line-color: #FF9800;
+
+
+audio, video {
+	* {
+		-webkit-appearance: inherit;
+	}
+}
+
+input[type="range"]::-webkit-media-slider-container {}
+input[type="range"]::-webkit-media-slider-container > div {}
+
+input[type="range"]::-webkit-media-slider-thumb { //nope isn't working
+	-webkit-appearance: inherit;
+	max-width: 20px;
+	max-height: 20px;
+	display: block;
+	background: red;
+	border-radius: 50%;
+}
+
+audio {
+    height: 48px;
+    width: $media-audio-width;
+
+	&:not([controls]) {}
+	&::-webkit-media-controls-overlay-enclosure {}
+	&::-webkit-media-controls-toggle-closed-captions-button {}
+}
+
+video {
+	width: $media-video-width;
+	max-width: $media-video-maxwidth;
+	
+	&:-webkit-full-page-media {}
+	&::-webkit-media-controls-overlay-enclosure {}
+	&::-webkit-media-controls-overlay-play-button {}
+	&::-internal-media-controls-overlay-cast-button {}
+	&::-webkit-media-controls-toggle-closed-captions-button {}
+	&::-webkit-media-text-track-container {}
+	&::cue {}
+	&::-webkit-media-text-track-region {}
+	&::-webkit-media-text-track-region-container {}
+	&::-webkit-media-text-track-region-container.scrolling {}
+	&::-webkit-media-text-track-display {}
+	&::cue(:future) {}
+	&::-webkit-media-text-track-container b {}
+	&::-webkit-media-text-track-container u {}
+	&::-webkit-media-text-track-container i {}
+}
+
+audio, video {
+
+	&::-webkit-media-controls {}
+	&::-webkit-media-controls-enclosure {}
+	&::-webkit-media-controls-panel {
+		height: $media-controls-height;
+		min-width: $media-controls-height; 
+		padding: 0 $media-controls-horizontal-padding;
+		box-sizing: border-box;
+		background-color: $media-controls-background;
+		border-radius:$media-controls-border-radius;
+		font-size: $font-size;
+		font-family: $font-family;
+	}
+	&:-webkit-full-page-media {}
+	&:-webkit-full-page-media::-webkit-media-controls-panel {}
+	&::-webkit-media-controls-mute-button {}
+	&::-webkit-media-controls-play-button {}
+	&::-webkit-media-controls-timeline-container {}
+	&::-webkit-media-controls-current-time-display {
+		color: $media-controls-time-color;
+	}
+	&::-webkit-media-controls-time-remaining-display {
+		color: $media-controls-time-remaining-color;
+	}
+	&::-webkit-media-controls-timeline {
+		height: 2px;
+		/* Leave 6px on either side for the thumb.  Use margin so that
+		 * the slider doesn't extend into it.  We also add 12px border.
+		 */
+		padding: 0;
+		margin: 0 18px 0 18px;
+		background-color: $media-controls-line-color;
+	}
+	&::-webkit-media-controls-volume-slider {
+		height: 2px;
+		max-width: 70px;
+
+		padding: 0;
+		margin: 0 18px 0 18px;
+		background-color: $media-controls-volume-line-color;
+	}
+	&::-webkit-media-controls-fullscreen-button {}
+	&::-internal-media-controls-cast-button {}
+	&::-webkit-media-controls-fullscreen-volume-slider {}
+	&::-webkit-media-controls-fullscreen-volume-min-button {}
+	&::-webkit-media-controls-fullscreen-volume-max-button {}
+}
+
+
+

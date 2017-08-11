@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>html5-audio-video-sass</title>
+  <link rel="stylesheet" href="media.css">
+</head>
+<body>
+	<header class="align-left">
+		<h1>html5-audio-video-sass</h1>
+		<p>Try to style <b>Html5 &lt;audio&gt; and &lt;video&gt;</b></p>
+	</header>
+
+	<div class="card">
+		<h4>Audio</h4>
+		<p>Before HTML5, audio files could only be played in a browser with a plug-in (like flash).<br /> the HTML5 &lt;audio&gt; element specifies a standard way to embed audio in a web page.</p>
+		
+		<code>
+			&lt;audio controls preload=&quot;metadata&quot;&gt;<br/>
+			  &nbsp;&nbsp;&lt;source src=&quot;https://www.w3schools.com/html/horse.ogg&quot; type=&quot;audio/ogg&quot;&gt;<br/>
+			&lt;/audio&gt;		
+		</code>
+		
+		<audio controls preload="metadata">
+		  <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+		</audio>
+	</div>
+	
+	<div class="card">
+		<h4>Video</h4>
+		<p>Before HTML5, a video could only be played in a browser with a plug-in (like flash).<br />The HTML5 &lt;video&gt; element specifies a standard way to embed a video in a web page.</p>
+		
+		<code>
+			&lt;video controls preload=&quot;metadata&quot;&gt;<br/>
+				&nbsp;&nbsp;&lt;source src=&quot;https://www.w3schools.com/html/movie.mp4&quot; type=&quot;video/mp4&quot;&gt;<br/>
+				&nbsp;&nbsp;&lt;source src=&quot;https://www.w3schools.com/html/movie.ogg&quot; type=&quot;video/ogg&quot;&gt;<br/>
+				&nbsp;&nbsp;Your browser does not support the video tag.<br/>
+			&lt;/video&gt;
+		</code>
+		
+			<video controls preload="metadata">
+				<source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+				<source src="https://www.w3schools.com/html/movie.ogg" type="video/ogg">
+				Your browser does not support the video tag.
+			</video>
+	</div>
+
+
+	<div class="credits">
+		Codekraft Studio &copy;2017 - info@codekraft.it
+	</div>
+
+	<!-- From here onwards, you will find what is needed for this demo page -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="demo/style.css">
+	<script src="demo/scripts.js"></script>
+</body>
+</html>
