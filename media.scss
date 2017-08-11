@@ -56,7 +56,7 @@ video {
 	width: $media-video-width;
 	max-width: $media-video-maxwidth;
 	height: $media-video-height;
-    &::-webkit-media-controls-panel {	
+    &::-webkit-media-controls-panel {
 		border-radius:0 0 $media-controls-border-radius $media-controls-border-radius;	
     }
 	&:-webkit-full-page-media {}

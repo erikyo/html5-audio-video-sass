@@ -83,4 +83,4 @@ gulp.task("sass:watch", () => watchSass([
 		autoprefixer(opts.autoprefixer)
 	]))
 	.pipe(sourcemaps.write())
-	.pipe(gulp.dest("./")));
+	.pipe(gulp.dest(opts.destPath)));
