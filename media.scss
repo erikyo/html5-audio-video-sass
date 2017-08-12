@@ -68,15 +68,18 @@ audio {
 	&::-webkit-media-controls-toggle-closed-captions-button {}
 }
 
+
+
 video {
 	width: $media-video-width;
 	max-width: $media-video-maxwidth;
 	height: $media-video-height;
+	margin-top: $media-controls-height
+
     &::-webkit-media-controls-panel {
-		border-radius:0 0 $media-controls-border-radius $media-controls-border-radius;	
+		border-radius:0 0 $media-controls-border-radius $media-controls-border-radius;
     }
-	&:-webkit-full-page-media {}
-	&::-webkit-media-controls-overlay-enclosure {}
+	&::-webkit-media-controls-overlay-enclosure { }
 	&::-webkit-media-controls-overlay-play-button {}
 	&::-internal-media-controls-overlay-cast-button {}
 	&::-webkit-media-controls-toggle-closed-captions-button {}
@@ -100,9 +103,6 @@ audio, video {
 	}
 
 	&::-webkit-media-controls-panel {
-		opacity: 1 !important;
-		display: -webkit-flex !important;
-		margin-top: $media-controls-height;
 		height: $media-controls-height;
 		min-width: $media-controls-height;
 		padding: 0 $media-controls-horizontal-padding;
@@ -196,6 +196,8 @@ audio, video {
 	&::-webkit-media-controls-fullscreen-volume-slider {}
 	&::-webkit-media-controls-fullscreen-volume-min-button {}
 	&::-webkit-media-controls-fullscreen-volume-max-button {}
+
+	
 // hell
 	&::-webkit-media-controls-volume-slider::-webkit-media-slider-container, 
 	&::-webkit-media-controls-timeline::-webkit-media-slider-container {
