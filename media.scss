@@ -4,23 +4,38 @@ $media-audio-maxwidth: 600px;
 
 $media-video-width: 100%;
 $media-video-maxwidth: 400px;
-$media-video-height: 300px;
+$media-video-height: auto;
 
 $media-controls-height: 36px;
-$media-controls-border-radius: 4px;
+$media-controls-buttons-height: 24px;
+$media-controls-border-radius: 3px;
 $media-controls-horizontal-padding: 16px;
+
+$media-controls-line-height: 6px;
+$media-controls-line-margin: 8px;
 
 // text
 $font-family: 'Roboto', 'Helvetica', sans-serif;
-$font-size: 12px;
-$media-controls-time-color: #fff;
-$media-controls-time-remaining-color: #CDDC39;
+$font-size: 13px;
+$media-controls-time-color: #eee;
+$media-controls-time-remaining-color: #999;
 
 // Color
 $media-controls-background: #2d2d2d;
 $media-controls-line-color: #8BC34A;
 $media-controls-volume-line-color: #673AB7;
 
+$media-controls-volume-controls-color: #03A9F4;
+
+
+// Icons (use svg) 
+$media-icon-play: '<path d="M8 5v14l11-7z"/><path d="M0 0h24v24H0z" fill="none"/>';
+$media-icon-pause: '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/><path d="M0 0h24v24H0z" fill="none"/>';
+
+$media-icon-volume: '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/><path d="M0 0h24v24H0z" fill="none"/>';
+$media-icon-volume-mute: '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/><path d="M0 0h24v24H0z" fill="none"/>';
+
+$media-icon-fullscreen: '<path d="M0 0h24v24H0z" fill="none"/><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>';
 
 audio, video {
 	* {
@@ -28,20 +43,21 @@ audio, video {
 	}
 }
 
-input[type="range"]::-webkit-media-slider-container {}
-input[type="range"]::-webkit-media-slider-container > div {}
-
-input[type="range"]::-webkit-media-slider-thumb { //nope isn't working
+	
+input[type=range] {
+   -webkit-appearance: none;
+   background: #FFC107;
+}
+input[type="range"]::-webkit-slider-thumb, input[type="range"]::-webkit-media-slider-thumb  { //nope isn't working
 	-webkit-appearance: inherit;
 	max-width: 20px;
 	max-height: 20px;
 	display: block;
-	background: red;
+	background: #FFC107;
 	border-radius: 50%;
 }
 
 audio {
-    height: 48px;
     width: $media-audio-width;
     max-width: $media-audio-maxwidth;
     &::-webkit-media-controls-panel {
@@ -79,8 +95,14 @@ video {
 audio, video {
 
 	&::-webkit-media-controls {}
-	&::-webkit-media-controls-enclosure {}
+	&::-webkit-media-controls-enclosure {
+		height: $media-controls-height;
+	}
+
 	&::-webkit-media-controls-panel {
+		opacity: 1 !important;
+		display: -webkit-flex !important;
+		margin-top: $media-controls-height;
 		height: $media-controls-height;
 		min-width: $media-controls-height;
 		padding: 0 $media-controls-horizontal-padding;
@@ -89,40 +111,119 @@ audio, video {
 		font-size: $font-size;
 		font-family: $font-family;
 	}
+
 	&:-webkit-full-page-media {}
 	&:-webkit-full-page-media::-webkit-media-controls-panel {}
-	&::-webkit-media-controls-mute-button {}
-	&::-webkit-media-controls-play-button {}
-	&::-webkit-media-controls-timeline-container {}
+
+	// btn
+	&::-webkit-media-controls-play-button {
+		-webkit-appearance: inherit;
+		background-color: transparent;
+		cursor: pointer;
+		background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$media-controls-volume-controls-color}" width="#{$media-controls-buttons-height}" height="#{$media-controls-buttons-height}">#{$media-icon-play}</svg>') center no-repeat;
+		
+		:hover { // isn't working
+			-webkit-appearance: none;
+			opacity: 0.75;
+			background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$media-controls-volume-controls-color}" width="#{$media-controls-buttons-height}" height="#{$media-controls-buttons-height}">#{$media-icon-pause}</svg>') center no-repeat;
+		}
+	}
+
+	&::-webkit-media-controls-mute-button {
+		-webkit-appearance: inherit;
+		background-color: transparent;
+		cursor: pointer;
+		background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$media-controls-volume-controls-color}" width="#{$media-controls-buttons-height}" height="#{$media-controls-buttons-height}">#{$media-icon-volume}</svg>') center no-repeat;
+		&:hover {
+			-webkit-appearance: none;
+			opacity: 0.75;
+			background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$media-controls-volume-controls-color}" width="#{$media-controls-buttons-height}" height="#{$media-controls-buttons-height}">#{$media-icon-volume-mute}</svg>') center no-repeat;
+		}
+	}
+	&::-webkit-media-controls-fullscreen-button {
+		-webkit-appearance: inherit;
+		background-color: transparent;
+		cursor: pointer;
+		background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="#{$media-controls-volume-controls-color}" width="#{$media-controls-buttons-height}" height="#{$media-controls-buttons-height}">#{$media-icon-fullscreen}</svg>') center no-repeat;
+		:hover {
+			-webkit-appearance: inherit;
+			opacity: 0.25;
+		}
+	}
+
+
+	&::-internal-media-controls-cast-button {} // ???
+	&::-internal-media-controls-download-button { // isn't working
+		display:none;
+	}
+
+
+
+
+// time text
 	&::-webkit-media-controls-current-time-display {
 		color: $media-controls-time-color;
+		margin-left:8px;
 	}
 	&::-webkit-media-controls-time-remaining-display {
 		color: $media-controls-time-remaining-color;
+		margin-right:8px;
+	}
+	
+// timeline
+	
+	&::-webkit-media-controls-volume-slider, 
+	&::-webkit-media-controls-timeline {
+		// both lines
+		border-radius:6px;
+	}
+	&::-webkit-media-controls-timeline-container {
+		
 	}
 	&::-webkit-media-controls-timeline {
-		height: 2px;
-		/* Leave 6px on either side for the thumb.  Use margin so that
-		 * the slider doesn't extend into it.  We also add 12px border.
-		 */
-		padding: 0;
-		margin: 0 18px 0 18px;
-		background-color: $media-controls-line-color;
+		padding: ($media-controls-line-height * 0.5) 6px;
+		margin: 0 $media-controls-line-margin * 2 0 $media-controls-line-margin;
+		background-color: $media-controls-line-color; // background affect timeline buffering etc i think there is another pseudo
 	}
 	&::-webkit-media-controls-volume-slider {
-		height: 2px;
-		max-width: 70px;
-
-		padding: 0;
-		margin: 0 18px 0 18px;
+		padding: ($media-controls-line-height * 0.5) 6px;
+		min-width: 50px;
+		margin: 0 $media-controls-line-margin * 2 0 $media-controls-line-margin;
 		background-color: $media-controls-volume-line-color;
 	}
-	&::-webkit-media-controls-fullscreen-button {}
-	&::-internal-media-controls-cast-button {}
+
+	
 	&::-webkit-media-controls-fullscreen-volume-slider {}
 	&::-webkit-media-controls-fullscreen-volume-min-button {}
 	&::-webkit-media-controls-fullscreen-volume-max-button {}
+// hell
+	&::-webkit-media-controls-volume-slider::-webkit-media-slider-container, 
+	&::-webkit-media-controls-timeline::-webkit-media-slider-container {
+		// -webkit-appearance: inherit;
+		// border: 0px;
+		// border-radius: 5px;
+		// background-color: #FF9800;
+		// cursor: pointer;
+		// max-width: 60px;
+		// max-height: 60px;
+		// display: block;
+		// background: red;
+	}
+
+	&::-webkit-media-slider-thumb {
+		// -webkit-appearance: inherit;
+		// background: #9C27B0; not working 
+		// -webkit-filter: hue-rotate(270deg);
+	}
+
+
+
+	&::-webkit-media-controls-timeline {
+		// -webkit-filter: hue-rotate(270deg);
+	}
 }
+
+
 
 
 
